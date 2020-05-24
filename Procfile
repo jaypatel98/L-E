@@ -1,1 +1,1 @@
-worker: python deleteMessages.py
+worker: python discordBot.py
