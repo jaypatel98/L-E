@@ -11,6 +11,8 @@ global NAMES
 NAMES = []
 ref = ["j.moomoo.com", "share.firstrade.com", "act.webull.com", "dough.com/referrals?referral=", "join.robinhood.com"]
 
+bot.remove_command('help')
+
 
 @client.event
 async def on_ready():
@@ -57,7 +59,7 @@ async def enable(ctx):
 
 @client.command()
 async def roll(ctx, max: int):
-    """ -- Roll number between 1 and {Input}"""
+    """ -- Roll number between 1 and {input}"""
 
     # Get the server channel to send the "user rolled # out of #" message to
     roll_channel = client.get_channel(700426150329057340)
