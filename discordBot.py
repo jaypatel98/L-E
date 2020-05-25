@@ -11,7 +11,7 @@ global NAMES
 NAMES = []
 ref = ["j.moomoo.com", "share.firstrade.com", "act.webull.com", "dough.com/referrals?referral=", "join.robinhood.com"]
 
-bot.remove_command('help')
+client.remove_command('help')
 
 
 @client.event
