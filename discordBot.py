@@ -35,9 +35,9 @@ async def on_message(message):
                     f"{message.author.mention} has tried to send a referral link.")
 
 
-    if message.channel.id == 685184561218322512:
+    if message.channel.id == 714263551279366264:
         await client.process_commands(message)
-        time.sleep(5)
+        time.sleep(60)
         await message.delete()
 
 
@@ -50,9 +50,9 @@ async def enable(ctx):
         global toggle
         toggle = not toggle
         if toggle == False:
-            await ctx.message.channel.send("Referral Destroyer is now on.")
+            await ctx.message.channel.send("Referral Deleter is now on.")
         else:
-            await ctx.message.channel.send("Referral Destroyer is now off.")
+            await ctx.message.channel.send("Referral Deleter is now off.")
 
 
 @client.command()
@@ -134,4 +134,4 @@ async def clear(ctx):
         NAMES.clear()
         await ctx.author.send("The list has been cleared.")
 
-client.run("NzE0MTcwMDQwMDI2Mzk4NzMw.Xsqwzg.NAdW0RgF7r-GZP32ZT4N412yJRA")
+client.run(TOKEN)
