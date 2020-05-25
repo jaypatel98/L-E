@@ -134,4 +134,4 @@ async def clear(ctx):
         NAMES.clear()
         await ctx.author.send("The list has been cleared.")
 
-client.run(TOKEN)
+client.run(os.environ['TOKEN'])
