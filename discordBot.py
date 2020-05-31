@@ -25,7 +25,10 @@ async def on_message(message):
     await client.process_commands(message)
     if toggle == False:
 
-        channel = client.get_channel(os.environ['CHANNEL'])
+        channel = os.environ['CHANNEL']
+        channel = int(channel)
+
+        channel = client.get_channel(channel)
         messageBackup = message
         for x in range(0, len(ref)):
             if ref[x] in message.content:
@@ -37,8 +40,11 @@ async def on_message(message):
                     f"{message.author.mention} has tried to send a referral link.")
 
 
+    donateChannel = os.environ['DONATE_CHANNEL']
+    donateChannel = int(donateChannel)
 
-    if message.channel.id == os.environ['DONATE_CHANNEL']:
+    if message.channel.id == donateChannel:
+
         await client.process_commands(message)
         time.sleep(60)
         await message.delete()
@@ -65,8 +71,9 @@ async def roll(ctx, max: int):
 
 
     # Get the server channel to send the "user rolled # out of #" message to
-    roll_channel = client.get_channel(os.environ['ROLL_CHHANNEL'])
-
+    channelID = os.environ['ROLL_CHHANNEL']
+    channelID = int(channelID)
+    roll_channel = client.get_channel(channelID)
     # Get the random roll number from 1 to the number that was inputed
     rolled = random.randint(1, max)
 
@@ -132,6 +139,9 @@ async def list(ctx):
     if role in ctx.author.roles:
         await ctx.send(NAMES)
 
+@client.command()
+async def invite(ctx):
+	await ctx.message.channel.send("https://discord.gg/togethearn")
 
 @client.command()
 async def clear(ctx):
