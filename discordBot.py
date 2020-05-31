@@ -25,7 +25,7 @@ async def on_message(message):
     await client.process_commands(message)
     if toggle == False:
 
-        channel = client.get_channel(693276577731182592)
+        channel = client.get_channel(os.environ['CHANNEL'])
         messageBackup = message
         for x in range(0, len(ref)):
             if ref[x] in message.content:
@@ -37,7 +37,8 @@ async def on_message(message):
                     f"{message.author.mention} has tried to send a referral link.")
 
 
-    if message.channel.id == 714263551279366264:
+
+    if message.channel.id == os.environ['DONATE_CHANNEL']:
         await client.process_commands(message)
         time.sleep(60)
         await message.delete()
@@ -61,8 +62,10 @@ async def enable(ctx):
 async def roll(ctx, max: int):
     """ -- Roll number between 1 and {input}"""
 
+
+
     # Get the server channel to send the "user rolled # out of #" message to
-    roll_channel = client.get_channel(700426150329057340)
+    roll_channel = client.get_channel(os.environ['ROLL_CHHANNEL'])
 
     # Get the random roll number from 1 to the number that was inputed
     rolled = random.randint(1, max)
@@ -114,6 +117,10 @@ async def rem(ctx, name: str):
 
             # If the user does not exist on the list, send this message
             await ctx.author.send("The user " + username + " has not yet rolled.")
+
+
+
+
 
 
 @client.command()
