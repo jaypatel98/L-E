@@ -35,7 +35,7 @@ async def on_message(message):
                 await message.delete()
                 print(message.author)
                 await message.author.send(
-                    "Hello! We've noticed you sent a referral link and while we appreciate you trying to help others, referal links are reserved for those who have earned the right. Reach out to us for our assistance with how to get referalls.  If you have any questions or would like to help, don\'t hesitate to message an Admin! Thank you for being a part of Togethearn!")
+                    "Hello! We've noticed you sent a referral link and while we appreciate you trying to help others, referal links are reserved for those who have earned the right. Reach out to us for our assistance with how to get referalls.  If you have any questions or would like to help, don\'t hesitate to message an Admin! Thank you for being a part of Learn and Earn!")
                 await channel.send(
                     f"{message.author.mention} has tried to send a referral link.")
 
