@@ -141,7 +141,7 @@ async def list(ctx):
 
 @client.command()
 async def invite(ctx):
-	await ctx.message.channel.send("https://discord.gg/XGzyksp")
+	await ctx.message.channel.send("https://discord.gg/4EdCTGh")
 
 @client.command()
 async def clear(ctx):
