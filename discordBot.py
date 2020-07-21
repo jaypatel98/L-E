@@ -55,44 +55,44 @@ async def on_message(message):
         await asyncio.sleep(60)
         await message.delete()
 
-@client.event
-async def on_member_join(member):
+# @client.event
+# async def on_member_join(member):
 
-    starthere = client.get_channel(os.environ['START_HERE'])
-    userAgreementchannel = client.get_channel(os.environ['USER_AGREEMENT'])
+#     starthere = client.get_channel(os.environ['START_HERE'])
+#     userAgreementchannel = client.get_channel(os.environ['USER_AGREEMENT'])
 
-    server = starthere.guild
-    role = discord.utils.find(lambda r: r.name == 'New User', server.roles)
-    await member.add_roles(role)
+#     server = starthere.guild
+#     role = discord.utils.find(lambda r: r.name == 'New User', server.roles)
+#     await member.add_roles(role)
 
-    await starthere.send(
-        f"Welcome to Learn and Earn {member.mention}! Press the green checkbox in the {userAgreementchannel.mention} channel to get access to the full server.")
+#     await starthere.send(
+#         f"Welcome to Learn and Earn {member.mention}! Press the green checkbox in the {userAgreementchannel.mention} channel to get access to the full server.")
 
-@client.event
-async def on_raw_reaction_add(payload):
-    if payload.message_id == os.environ['MESSAGE_ID']:
-        print(payload.emoji.name)
-        # Find a role corresponding to the Emoji name.
-        guild_id = payload.guild_id
+# @client.event
+# async def on_raw_reaction_add(payload):
+#     if payload.message_id == os.environ['MESSAGE_ID']:
+#         print(payload.emoji.name)
+#         # Find a role corresponding to the Emoji name.
+#         guild_id = payload.guild_id
 
-        guild = discord.utils.find(lambda g : g.id == guild_id, client.guilds)
+#         guild = discord.utils.find(lambda g : g.id == guild_id, client.guilds)
 
-        roleAdd = discord.utils.find(lambda r: r.name == 'Community Members', guild.roles)
-        roleRemove = discord.utils.find(lambda r: r.name == 'New User', guild.roles)
+#         roleAdd = discord.utils.find(lambda r: r.name == 'Community Members', guild.roles)
+#         roleRemove = discord.utils.find(lambda r: r.name == 'New User', guild.roles)
 
-        print(payload.emoji.name)
-        if(payload.emoji.name == '✅'):
-            print("inhere")
+#         print(payload.emoji.name)
+#         if(payload.emoji.name == '✅'):
+#             print("inhere")
 
-            role = discord.utils.get(guild.roles, name="Community Members")
+#             role = discord.utils.get(guild.roles, name="Community Members")
 
-        if role is not None:
-            print(role.name + " was found!")
-            print(role.id)
-            member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
-            await member.add_roles(roleAdd)
-            await member.remove_roles(roleRemove)
-            print("done")
+#         if role is not None:
+#             print(role.name + " was found!")
+#             print(role.id)
+#             member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
+#             await member.add_roles(roleAdd)
+#             await member.remove_roles(roleRemove)
+#             print("done")
 
 
 
