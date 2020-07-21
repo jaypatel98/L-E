@@ -55,72 +55,74 @@ async def on_message(message):
         await asyncio.sleep(60)
         await message.delete()
 
-# @client.event
-# async def on_member_join(member):
+@client.event
+async def on_member_join(member):
 
-#     starthere = client.get_channel(os.environ['START_HERE'])
-#     userAgreementchannel = client.get_channel(os.environ['USER_AGREEMENT'])
+    starthere = os.environ['START_HERE']
+    starthere = int(starthere)
+    starthere = client.get_channel(starthere)
+    
+    
 
-#     server = starthere.guild
-#     role = discord.utils.find(lambda r: r.name == 'New User', server.roles)
-#     await member.add_roles(role)
+  
+    userAgreementchannel = os.environ['USER_AGREEMENT']
+    userAgreementchannel = int(userAgreementchannel)
+    userAgreementchannel = client.get_channel(userAgreementchannel)
 
-#     await starthere.send(
-#         f"Welcome to Learn and Earn {member.mention}! Press the green checkbox in the {userAgreementchannel.mention} channel to get access to the full server.")
+    role = discord.Object(714986896903897100)
+    await member.add_roles(role, reason="User Join")
 
-# @client.event
-# async def on_raw_reaction_add(payload):
-#     if payload.message_id == os.environ['MESSAGE_ID']:
-#         print(payload.emoji.name)
-#         # Find a role corresponding to the Emoji name.
-#         guild_id = payload.guild_id
+    await starthere.send(
+        f"Welcome to Learn and Earn {member.mention}! Press the green checkbox in the {userAgreementchannel.mention} channel to get access to the full server.")
 
-#         guild = discord.utils.find(lambda g : g.id == guild_id, client.guilds)
+@client.event
+async def on_raw_reaction_add(payload):
+    message = int(os.environ['MESSAGE_ID'])
+    if payload.message_id == message:
 
-#         roleAdd = discord.utils.find(lambda r: r.name == 'Community Members', guild.roles)
-#         roleRemove = discord.utils.find(lambda r: r.name == 'New User', guild.roles)
+        # Find a role corresponding to the Emoji name.
+        guild_id = payload.guild_id
 
-#         print(payload.emoji.name)
-#         if(payload.emoji.name == '✅'):
-#             print("inhere")
+        guild = discord.utils.find(lambda g : g.id == guild_id, client.guilds)
 
-#             role = discord.utils.get(guild.roles, name="Community Members")
+        roleAdd = discord.utils.find(lambda r: r.name == 'Community Members', guild.roles)
+        roleRemove = discord.utils.find(lambda r: r.name == 'New User', guild.roles)
 
-#         if role is not None:
-#             print(role.name + " was found!")
-#             print(role.id)
-#             member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
-#             await member.add_roles(roleAdd)
-#             await member.remove_roles(roleRemove)
-#             print("done")
+        if(payload.emoji.name == '✅'):
 
+            role = discord.utils.get(guild.roles, name="Community Members")
 
+        if role is not None:
+
+            member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
+            await member.add_roles(roleAdd)
+            await member.remove_roles(roleRemove)
 
 
-# @client.event
-# async def clearUsers():
-#     await client.wait_until_ready()
-#     while True:
-#         counter = 0
-#         startchannel = client.get_channel(os.environ['START_HERE'])
 
-#         server = startchannel.guild
-#         # role = discord.utils.find(lambda r: r.name == 'New User', client.roles)
 
-#         for member in server.members:
+@client.event
+async def clearUsers():
+    await client.wait_until_ready()
+    while True:
+        counter = 0
+        startchannel = client.get_channel(os.environ['START_HERE'])
 
-#             for role in member.roles:
-#                 if role.name == "New User":
-#                     counter+=1
-#                     print(f"Removed: {member}")
-#                     members = str(member)
-#                     memberNameTemp = re.match(r"[^#]+", members)
-#                     memberName = memberNameTemp.group()
-#                     # await member.send(
-#                     #     f"Hi, {memberName} we noticed you joined our group but have not gotten full access to all of our channels. To get full access please go to the user agreement channel and click the green check mark one time to have full access. To make this process easier for you I have removed you and you can use the attached invite to rejoin the group and get properly verified. Hope to see you soon, {memberName}.\n Invite link: https://discord.gg/XGzyksp")
-#                     # await server.kick(member, reason="User did not verify")
-#         print(counter)
-#         await asyncio.sleep(3600)
+        for guild in client.guilds:
+            for member in server.members:
+
+                for role in member.roles:
+                    if role.name == "New User":
+                        counter+=1
+                        print(f"Removed: {member}")
+                        members = str(member)
+                        memberNameTemp = re.match(r"[^#]+", members)
+                        memberName = memberNameTemp.group()
+                        # await member.send(
+                        #     f"Hi, {memberName} we noticed you joined our group but have not gotten full access to all of our channels. To get full access please go to the user agreement channel and click the green check mark one time to have full access. To make this process easier for you I have removed you and you can use the attached invite to rejoin the group and get properly verified. Hope to see you soon, {memberName}.\n Invite link: https://discord.gg/XGzyksp")
+                        # await server.kick(member, reason="User did not verify")
+                    print(counter)
+                    await asyncio.sleep(3600)
 
 
 
