@@ -102,7 +102,7 @@ async def clearUsers():
     await client.wait_until_ready()
     while True:
         counter = 0
-        startchannel = client.get_channel(os.environ['START-HERE'])
+        startchannel = client.get_channel(os.environ['START_HERE'])
 
         server = startchannel.guild
         # role = discord.utils.find(lambda r: r.name == 'New User', client.roles)
