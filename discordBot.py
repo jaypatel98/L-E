@@ -22,7 +22,7 @@ client.remove_command('help')
 async def on_ready():
     print('Bot is ready!')
     global channel
-#     client.loop.create_task(clearUsers())
+     client.loop.create_task(clearUsers())
 
 
 
