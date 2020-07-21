@@ -114,8 +114,8 @@ async def clearUsers():
                 members = str(member)
                 memberNameTemp = re.match(r"[^#]+", members)
                 memberName = memberNameTemp.group()
-                await member.send(
-                    f"Hi, {memberName} we noticed you joined our group but have not gotten full access to all of our channels. To get full access please go to the user agreement channel and click the green check mark one time to have full access. To make this process easier for you I have removed you and you can use the attached invite to rejoin the group and get properly verified. Hope to see you soon, {memberName}.\n Invite link: https://discord.gg/XGzyksp")
+                #await member.send(
+                  #  f"Hi, {memberName} we noticed you joined our group but have not gotten full access to all of our channels. To get full access please go to the user agreement channel and click the green check mark one time to have full access. To make this process easier for you I have removed you and you can use the attached invite to rejoin the group and get properly verified. Hope to see you soon, {memberName}.\n Invite link: https://discord.gg/XGzyksp")
                 # await server.kick(member, reason="User did not verify")
 
         await asyncio.sleep(3600)
