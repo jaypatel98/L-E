@@ -99,28 +99,30 @@ async def on_raw_reaction_add(payload):
 
 @client.event
 async def clearUsers():
-    counter = 0
     await client.wait_until_ready()
     while True:
-        startchannel = client.get_channel(os.environ['START_HERE'])
+        counter = 0
+        startchannel = client.get_channel(708705496269324388)
 
         server = startchannel.guild
-        role = discord.utils.find(lambda r: r.name == 'New User', server.roles)
+        # role = discord.utils.find(lambda r: r.name == 'New User', client.roles)
 
         for member in server.members:
 
-            if role in member.roles:
-                counter+=1
-
-                print(f"Removed: {member}")
-                members = str(member)
-                memberNameTemp = re.match(r"[^#]+", members)
-                memberName = memberNameTemp.group()
-                #await member.send(
-                  #  f"Hi, {memberName} we noticed you joined our group but have not gotten full access to all of our channels. To get full access please go to the user agreement channel and click the green check mark one time to have full access. To make this process easier for you I have removed you and you can use the attached invite to rejoin the group and get properly verified. Hope to see you soon, {memberName}.\n Invite link: https://discord.gg/XGzyksp")
-                # await server.kick(member, reason="User did not verify")
-        print(counter)
+            for role in member.roles:
+                if role.name == "New User":
+                    counter+=1
+                    print(f"Removed: {member}")
+                    members = str(member)
+                    memberNameTemp = re.match(r"[^#]+", members)
+                    memberName = memberNameTemp.group()
+                    # await member.send(
+                    #     f"Hi, {memberName} we noticed you joined our group but have not gotten full access to all of our channels. To get full access please go to the user agreement channel and click the green check mark one time to have full access. To make this process easier for you I have removed you and you can use the attached invite to rejoin the group and get properly verified. Hope to see you soon, {memberName}.\n Invite link: https://discord.gg/XGzyksp")
+                    # await server.kick(member, reason="User did not verify")
+        counter = 1
         await asyncio.sleep(3600)
+
+
 
 
 
