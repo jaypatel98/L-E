@@ -99,6 +99,7 @@ async def on_raw_reaction_add(payload):
 
 @client.event
 async def clearUsers():
+    counter = 0
     await client.wait_until_ready()
     while True:
         startchannel = client.get_channel(os.environ['START_HERE'])
@@ -109,6 +110,7 @@ async def clearUsers():
         for member in server.members:
 
             if role in member.roles:
+                counter+=1
 
                 print(f"Removed: {member}")
                 members = str(member)
@@ -117,7 +119,7 @@ async def clearUsers():
                 #await member.send(
                   #  f"Hi, {memberName} we noticed you joined our group but have not gotten full access to all of our channels. To get full access please go to the user agreement channel and click the green check mark one time to have full access. To make this process easier for you I have removed you and you can use the attached invite to rejoin the group and get properly verified. Hope to see you soon, {memberName}.\n Invite link: https://discord.gg/XGzyksp")
                 # await server.kick(member, reason="User did not verify")
-
+        print(counter)
         await asyncio.sleep(3600)
 
 
