@@ -114,7 +114,7 @@ async def clearUsers():
                 for role in member.roles:
                     if role.name == "New User":
                         counter+=1
-#                         print(f"Removed: {member}")
+                        print(f"Removed: {member}")
                         members = str(member)
                         memberNameTemp = re.match(r"[^#]+", members)
                         memberName = memberNameTemp.group()
